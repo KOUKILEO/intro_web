@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>My First Static Website</title>
 
   <style>
@@ -28,9 +29,9 @@
 
     .image-animation {
       position: relative;
-      width: 420px;
-      max-width: 90vw;
-      height: 320px;
+      width: 650px;
+      max-width: 95vw;
+      height: 380px;
       margin: 0 auto 35px;
       overflow: hidden;
       border-radius: 20px;
@@ -38,32 +39,44 @@
       background: #000;
     }
 
-    .half {
+    .half-wrap {
       position: absolute;
       top: 0;
       width: 50%;
       height: 100%;
-      background-image: var(--first-img);
-      background-size: 200% 100%;
-      background-repeat: no-repeat;
+      overflow: hidden;
       z-index: 2;
       animation-duration: 5s;
       animation-fill-mode: forwards;
       animation-timing-function: ease-in-out;
     }
 
-    .left-half {
+    .left-wrap {
       left: 0;
-      background-position: left center;
       transform: translateX(-100%);
       animation-name: leftMerge;
     }
 
-    .right-half {
+    .right-wrap {
       right: 0;
-      background-position: right center;
       transform: translateX(100%);
       animation-name: rightMerge;
+    }
+
+    .first-image {
+      position: absolute;
+      top: 0;
+      width: 200%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .left-wrap .first-image {
+      left: 0;
+    }
+
+    .right-wrap .first-image {
+      right: 0;
     }
 
     .second-image {
@@ -72,6 +85,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+
+      /* 這裡控制第二張圖的位置 */
+      object-position: center 65%;
+
       opacity: 0;
       transform: scale(1.08);
       z-index: 1;
@@ -145,6 +162,11 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
+    h2 {
+      margin-top: 25px;
+      font-size: 26px;
+    }
+
     button {
       margin-top: 20px;
       padding: 12px 32px;
@@ -165,6 +187,21 @@
     hr {
       margin-top: 35px;
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      .image-animation {
+        width: 95vw;
+        height: 260px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 
@@ -172,13 +209,27 @@
   <div class="page">
     <h1>Hello, 二百五!</h1>
 
-    <div
-      class="image-animation"
-      style="--first-img: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQGvnnlbvqTxILHhi-nXJrBFDS45_AqhCDOuwJtt-XBwYphGxHQ');"
-    >
-      <div class="half left-half"></div>
-      <div class="half right-half"></div>
+    <div class="image-animation">
 
+      <!-- 左半邊第一張圖 -->
+      <div class="half-wrap left-wrap">
+        <img
+          class="first-image"
+          src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQGvnnlbvqTxILHhi-nXJrBFDS45_AqhCDOuwJtt-XBwYphGxHQ"
+          alt="第一張圖左半"
+        />
+      </div>
+
+      <!-- 右半邊第一張圖 -->
+      <div class="half-wrap right-wrap">
+        <img
+          class="first-image"
+          src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQGvnnlbvqTxILHhi-nXJrBFDS45_AqhCDOuwJtt-XBwYphGxHQ"
+          alt="第一張圖右半"
+        />
+      </div>
+
+      <!-- 第二張圖 -->
       <img
         class="second-image"
         src="https://pic.upmedia.mg/uploads/ck/X231CV6X5G7.webp"
